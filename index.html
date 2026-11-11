@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#075589">
+<title>กิจกรรมลอยกระทงออนไลน์ | วิทยาลัยเทคนิคสุรนารี</title>
+<meta name="description" content="ลงทะเบียนและร่วมลอยกระทงออนไลน์ วิทยาลัยเทคนิคสุรนารี">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{font-family:Kanit,system-ui,sans-serif;color:#fff;background:#063e70}
+  *{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#084677,#1a9dd2 60%,#ffd96a);min-height:100vh}
+  .header{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:auto;padding:14px 20px;gap:16px}
+  .school{font-weight:700;font-size:clamp(16px,2.1vw,23px)}.school small{font-weight:400;opacity:.85;font-size:12px;display:block}
+  .open{display:inline-block;color:#084b76;background:#ffe084;text-decoration:none;padding:9px 14px;border-radius:22px;font-size:13px;font-weight:600}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 12px 26px}
+  .frame{width:100%;height:calc(100vh - 95px);min-height:780px;border:none;background:#f8fbff;border-radius:18px;display:block;box-shadow:0 12px 32px #002c5140}
+  .setup{max-width:750px;margin:8vh auto;padding:26px;background:#fff;color:#214865;border-radius:20px;box-shadow:0 20px 55px #003e6460}
+  .setup h1{margin:0 0 12px;font-size:26px;color:#0d75ac}.setup code{background:#e5f2f8;padding:3px 6px;border-radius:5px;overflow-wrap:anywhere}
+  .setup li{margin:8px 0}.setup p{line-height:1.7}
+  footer{font-size:12px;text-align:center;color:#fff;opacity:.85;padding-bottom:12px}
+  @media(max-width:650px){.header{padding:12px}.frame{height:calc(100dvh - 83px);min-height:700px;border-radius:12px}.open{font-size:11px}.wrap{padding:0 6px 12px}.setup{margin:14vh 8px;padding:20px}}
+</style>
+</head>
+<body>
+<header class="header"><div class="school">🌕 วิทยาลัยเทคนิคสุรนารี<small>กิจกรรมสืบสานประเพณีลอยกระทงออนไลน์</small></div><a id="openOriginal" class="open" href="#" target="_blank" rel="noopener" hidden>เปิดหน้าจอเต็ม ↗</a></header>
+<main class="wrap">
+<section class="setup" id="setup" hidden>
+<h1>🪷 ตั้งค่าเว็บไซต์ก่อนเผยแพร่</h1>
+<p>ไฟล์ GitHub Pages พร้อมใช้งานแล้ว แต่จำเป็นต้องใส่ลิงก์เว็บแอป Google Apps Script เพื่อให้ลงทะเบียนและบันทึกลง Google Sheets ได้จริง</p>
+<ol><li>เปิด Apps Script และเผยแพร่แบบ <strong>Web app</strong> (สิทธิ์เข้าถึง <strong>Anyone</strong>)</li><li>คัดลอก URL ที่ลงท้ายด้วย <code>/exec</code></li><li>เปิดไฟล์ <code>index.html</code> และเปลี่ยนค่าของ <code>APPS_SCRIPT_WEB_APP_URL</code> เป็น URL ที่คัดลอกมา</li><li>อัปโหลด <code>index.html</code> ไปยัง GitHub และเปิดใช้ GitHub Pages</li></ol>
+<p><strong>สำคัญ:</strong> ฝั่ง Apps Script ต้องใช้ไฟล์ <code>apps_script/Code.gs</code> เวอร์ชันในชุดนี้ ซึ่งอนุญาตให้ฝังหน้าใน GitHub Pages ได้</p>
+</section>
+<iframe id="loyApp" class="frame" title="ลงทะเบียนและลอยกระทงออนไลน์" loading="eager" allow="autoplay; fullscreen" referrerpolicy="strict-origin-when-cross-origin" hidden></iframe>
+</main>
+<footer>© วิทยาลัยเทคนิคสุรนารี · สืบสานวัฒนธรรมไทยด้วยเทคโนโลยี</footer>
+<script>
+// วาง URL เว็บแอปที่ได้จาก Deploy > Web app > Copy URL (ลงท้าย /exec)
+const APPS_SCRIPT_WEB_APP_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_EXEC_URL_HERE';
+const url = APPS_SCRIPT_WEB_APP_URL.trim();
+const isValid = /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec(?:[?#].*)?$/.test(url);
+if (isValid) {
+  const frame = document.getElementById('loyApp');
+  frame.src = url;
+  frame.hidden = false;
+  const link = document.getElementById('openOriginal');
+  link.href = url;
+  link.hidden = false;
+} else {
+  document.getElementById('setup').hidden = false;
+}
+</script>
+</body></html>
